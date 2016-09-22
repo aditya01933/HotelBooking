@@ -1,0 +1,17 @@
+<h3>Available rooms: </h3>
+
+
+<%= form_for @reservation do |f| %>
+  <ul>
+    <% @reservation.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+
+  CheckIn Date: <%= f.date_select :checkin_at %><br />
+  Checkout Date: <%= f.date_select :checkout_at %><br />
+  Advance Paid: <%= f.text_field :advance %><br />
+  Total Amount: <%= f.text_field :amount %><br />
+  Category: <%= select_tag(:category, options_for_select(["Delux Rooms", "Luxury Rooms", " Luxury Suites", "Presidential Suites"]))%></br>
+  <%= f.submit "Book" %>
+<%end%>
