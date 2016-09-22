@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :reservations
 
+  root 'reservations#index'
+
   scope module: :api , defaults: {format: 'json'} do
     scope module: :v1, path: :v1 do
       resources :available_rooms, only: :index
