@@ -21,8 +21,8 @@
           <td><%=reservation.room.category%></td>
           <td><%=reservation.room.description%></td>
           <td><%=reservation.room.price%></td>
-          <td><%=reservation.checkin_at%></td>
-          <td><%=reservation.checkout_at%></td>          
+          <td><%=reservation.checkin_at.strftime('%Y-%m-%d')%></td>
+          <td><%=reservation.checkout_at.strftime('%Y-%m-%d')%></td>          
         </tr>
       <%end%>
     </tbody>
