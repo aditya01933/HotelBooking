@@ -1,6 +1,6 @@
 
 <div class="container">
-  <%= link_to 'Reserve Room', new_reservation_path %>
+  <%= link_to 'Reserve Room', new_reservation_path, class: "btn btn-default btn-primary"  %>
   <h2>Your Reservations</h2>
   <p>All rooms booked by <b><%= current_user.email %></b></p>
   <table class="table table-striped">

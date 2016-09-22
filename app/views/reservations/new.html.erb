@@ -1,3 +1,6 @@
+<div class="row">
+<div class="col-md-6 col-md-offset-4">
+
 <h3>Room Reservation: </h3>
 
 <%= form_for @reservation, :html => {:class => "form-horizontal"} do |f| %>
@@ -7,12 +10,16 @@
     <% end %>
   </ul>
 
-   CheckIn Date: <%= f.date_select :checkin_at  %><br />
+   CheckIn Date: <%= f.date_select :checkin_at  %><br /><br />
   
 
-    Checkout Date: <%= f.date_select :checkout_at %><br />
+    Checkout Date: <%= f.date_select :checkout_at %><br /><br />
 
-    Category: <%= select_tag(:category, options_for_select(["Deluxe Rooms", "Luxury Rooms", " Luxury Suites", "Presidential Suites"]))%></br>
+    Category: <%= select_tag(:category, options_for_select(["Deluxe Rooms", "Luxury Rooms", " Luxury Suites", "Presidential Suites"]))%></br><br />
 
   <%= f.submit "Reserve Room", class: "btn btn-default btn-primary" %>
+  <%= link_to 'View all reservations', reservations_path, class: "btn btn-default btn-default"  %>
 <%end%>
+
+</div>
+</div>
