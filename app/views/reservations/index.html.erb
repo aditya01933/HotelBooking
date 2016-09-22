@@ -1,0 +1,30 @@
+
+<div class="container">
+  <%= link_to 'Reserve Room', new_reservation_path %>
+  <h2>Your Reservations</h2>
+  <p>All rooms booked by <b><%= current_user.email %></b></p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Room Number</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>CheckIn</th>
+        <th>CheckOut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reservations.each do |reservation|%>
+        <tr>
+          <td><%=reservation.room.identifier%></td>
+          <td><%=reservation.room.category%></td>
+          <td><%=reservation.room.description%></td>
+          <td><%=reservation.room.price%></td>
+          <td><%=reservation.checkin_at%></td>
+          <td><%=reservation.checkout_at%></td>          
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>      

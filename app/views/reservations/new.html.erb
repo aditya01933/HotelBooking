@@ -1,16 +1,18 @@
 <h3>Room Reservation: </h3>
 
-<%= form_for @reservation do |f| %>
+<%= form_for @reservation, :html => {:class => "form-horizontal"} do |f| %>
   <ul>
     <% @reservation.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
   </ul>
 
-  CheckIn Date: <%= f.date_select :checkin_at %><br />
-  Checkout Date: <%= f.date_select :checkout_at %><br />
-  Advance Paid: <%= f.text_field :advance %><br />
-  Total Amount: <%= f.text_field :amount %><br />
-  Category: <%= select_tag(:category, options_for_select(["Delux Rooms", "Luxury Rooms", " Luxury Suites", "Presidential Suites"]))%></br>
-  <%= f.submit "Book" %>
+   CheckIn Date: <%= f.date_select :checkin_at  %><br />
+  
+
+    Checkout Date: <%= f.date_select :checkout_at %><br />
+
+    Category: <%= select_tag(:category, options_for_select(["Deluxe Rooms", "Luxury Rooms", " Luxury Suites", "Presidential Suites"]))%></br>
+
+  <%= f.submit "Reserve Room", class: "btn btn-default btn-primary" %>
 <%end%>

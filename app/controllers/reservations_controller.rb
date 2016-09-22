@@ -1,3 +1,4 @@
+
 class ReservationsController < ApplicationController
 
   before_action :initialize_reservation_service, only: :create

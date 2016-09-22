@@ -1,10 +1,12 @@
 # This code can be put into model but service is used to make
 # the model thin.
 class ReservationService
-  attr_accessor :reservation_params, :user, :category
+  attr_accessor :reservation_params, :user, :category, :checkin_at, :checkout_at
 
   def initialize(reservation_params = {}, user:, category:)
     @reservation_params = reservation_params
+    @checkin_at = format 'checkin_at'
+    @checkout_at = format 'checkout_at'
     @user = user
     @category = category
   end
@@ -18,6 +20,7 @@ class ReservationService
       reservation = Reservation.new
       reservation.errors.add(:room, "not available")
     end
+
     reservation
   end
 
@@ -26,12 +29,18 @@ class ReservationService
     def self.free_room
       @free_room
     end
+    pp 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa0'
+    pp self.checkin_at
     free_rooms = Room.find_unreserved( 
-                    self.reservation_params[:checkin_at], 
-                    self.reservation_params[:checkout_at], 
+                    self.checkin_at, 
+                    self.checkout_at, 
                     self.category
                   )
     @free_room = free_rooms.first
+  end
+
+  def format date
+    Date.new reservation_params["#{date}(1i)"].to_i, reservation_params["#{date}(2i)"].to_i, reservation_params["#{date}(3i)"].to_i
   end
 
 end
