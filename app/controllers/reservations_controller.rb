@@ -3,7 +3,7 @@ class ReservationsController < ApplicationController
   before_action :initialize_resrvation_service, only: :create
 
   def index
-    
+    @reservations = current_user.reservations.includes(:room)
   end
 
   def new
