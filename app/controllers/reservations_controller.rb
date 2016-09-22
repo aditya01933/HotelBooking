@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
 
-  before_action :initialize_resrvation_service, only: :create
+  before_action :initialize_reservation_service, only: :create
 
   def index
     @reservations = current_user.reservations.includes(:room)
@@ -22,7 +22,7 @@ class ReservationsController < ApplicationController
 
   private
     # Service is used to make Model and Controller Thin.
-    def initialize_resrvation_service
+    def initialize_reservation_service
       @reservation_service = ReservationService.new(reservation_params,
                     user: current_user, 
                     category: params[:category])      

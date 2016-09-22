@@ -6,12 +6,11 @@ class Room < ActiveRecord::Base
   has_many :users, through: :reservations
 
   # Find all unreserved rooms for given date and category
-  def self.find_unreserved date_begin, date_end, category 
-    reserved_room_ids = Reservation.on(date_begin, date_end).pluck('DISTINCT room_id')
-    if reserved_room_ids.empty?
-      where(category: category).uniq
+  def self.find_unreserved date_begin, date_end, category = nil 
+    if category.present?
+      where.not(id: Reservation.on(date_begin, date_end).pluck('DISTINCT room_id')).where(category: category).uniq
     else
-      where('id NOT IN ?', reserved_room_ids).where(category: category).uniq
+      where.not(id: Reservation.on(date_begin, date_end).pluck('DISTINCT room_id')).uniq
     end
   end
 end
