@@ -10,10 +10,10 @@
     <% end %>
   </ul>
 
-   CheckIn Date: <%= f.date_select :checkin_at  %><br /><br />
+   CheckIn Date: <%= f.text_field :checkin_at, 'data-behaviour' => 'datepicker'%><br /><br />
   
 
-    Checkout Date: <%= f.date_select :checkout_at %><br /><br />
+    Checkout Date: <%= f.text_field :checkout_at, 'data-behaviour' => 'datepicker'%><br /><br />
 
     Category: <%= select_tag(:category, options_for_select(["Deluxe Rooms", "Luxury Rooms", " Luxury Suites", "Presidential Suites"]))%></br><br />
 
@@ -23,3 +23,9 @@
 
 </div>
 </div>
+
+<script type="text/javascript">
+  $('[data-behaviour~=datepicker]').datepicker({
+    format: 'yyyy-mm-dd'
+  });
+</script>
