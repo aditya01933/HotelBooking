@@ -20,7 +20,6 @@ class ReservationService
       reservation = Reservation.new
       reservation.errors.add(:room, "not available")
     end
-
     reservation
   end
 
