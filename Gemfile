@@ -28,6 +28,13 @@ gem 'devise'
 gem 'bootstrap-datepicker-rails'  
 
 gem 'active_model_serializers', '~> 0.10.0'
+
+# For Caching
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

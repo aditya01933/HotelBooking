@@ -20,12 +20,17 @@
   <%= f.submit "Reserve Room", class: "btn btn-default btn-primary" %>
   <%= link_to 'View all reservations', reservations_path, class: "btn btn-default btn-default"  %>
 <%end%>
+</br>
 
 </div>
 </div>
+
+<%= render 'rooms.html.erb' %>
+
 
 <script type="text/javascript">
   $('[data-behaviour~=datepicker]').datepicker({
     format: 'yyyy-mm-dd'
   });
 </script>
+

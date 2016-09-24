@@ -1,7 +1,8 @@
-
 class ReservationsController < ApplicationController
+  include RoomHelper
 
   before_action :initialize_reservation_service, only: :create
+  before_action :initialize_rooms, only: :new
 
   def index
     @reservations = current_user.reservations.includes(:room)
@@ -27,6 +28,10 @@ class ReservationsController < ApplicationController
       @reservation_service = ReservationService.new(reservation_params,
                     user: current_user, 
                     category: params[:category])      
+    end
+
+    def initialize_rooms
+      @rooms = fetch_rooms
     end
 
     def reservation_params

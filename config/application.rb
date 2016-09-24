@@ -22,5 +22,11 @@ module HotelBookingSystem2
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    # Here we should not expire the cache because hotel room info is dynamic.
+    # But for future or other purpose it can be kept.
+    config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
+
+
   end
 end
