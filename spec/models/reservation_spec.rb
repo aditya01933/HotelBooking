@@ -21,9 +21,15 @@ RSpec.describe Reservation, type: :model do
   end
 
   it "should validate booking before 6 months" do
-   reservation = FactoryGirl.build(:reservation, checkout_at: Date.today + 6.months + 2.days, checkin_at: Date.today + 6.months + 1.day)
-   expect(reservation).to be_invalid
-   expect(reservation.errors[:checkin_at][0]).to include(': Should be less than or equal to 6 months') 
+    reservation = FactoryGirl.build(:reservation, checkout_at: Date.today + 6.months + 2.days, checkin_at: Date.today + 6.months + 1.day)
+    expect(reservation).to be_invalid
+    expect(reservation.errors[:checkin_at][0]).to include(': Should be less than or equal to 6 months') 
+  end
+
+  it "should validate checkin after or on today's date" do
+    reservation = FactoryGirl.build(:reservation, checkout_at: Date.today, checkin_at: Date.today - 1.day)
+    expect(reservation).to be_invalid
+    expect(reservation.errors[:checkin_at][0]).to include(": Should be greater than or equal to today's date") 
   end
 
 end

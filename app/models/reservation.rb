@@ -7,10 +7,19 @@ class Reservation < ActiveRecord::Base
 
   validates :checkin_at, :checkout_at, presence: true
 
+  validate :checkin_at_after_or_on_today
   validate :checkout_at_after_checkin_at
   validate :checkin_before_6_months
 
   private
+    # Checkin date should not be less than today's date.
+    def checkin_at_after_or_on_today
+      return if dates_blank            
+      if checkin_at < Date.today
+        self.errors.add(:checkin_at, ": Should be greater than or equal to today's date")
+      end
+    end
+
     # Booking should only be for day1 to day2 as booking is done for 
     # night for example today's 12pm to next day's 12pm.
     def checkout_at_after_checkin_at  
